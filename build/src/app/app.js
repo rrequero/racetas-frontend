@@ -1,8 +1,8 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'racetas', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'racetas.home',
+  'racetas.recipe',
   'ui.router'
 ])
 

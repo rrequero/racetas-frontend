@@ -5777,34 +5777,13 @@ button.close {
     display: none !important;
   }
 }
-.jumbotron {
-  margin: 40px 0 80px 0;
-  text-align: center;
+.grid-sizer {
+  width: 20%;
 }
-.jumbotron h1 {
-  margin-bottom: 20px;
-  font-size: 55px;
-  line-height: 1;
-}
-.jumbotron .lead {
-  font-size: 24px;
-  line-height: 1.25;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-.marketing .row {
+.masonry-brick {
+  width: 200px;
+  border: 1px solid red;
+  height: 280px;
   margin-bottom: 10px;
-}
-.marketing .row:last-child {
-  margin-bottom: 0;
-}
-.marketing h4 [class*=" icon-"],
-.marketing h4 [class^="icon-"] {
-  margin-right: 5px;
-  vertical-align: -10%;
-  font-size: 28px;
-  line-height: 1;
 }
 /*# sourceMappingURL=racetas-frontend.css.map */

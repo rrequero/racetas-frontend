@@ -12,9 +12,10 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', [
+angular.module( 'racetas.home', [
   'ui.router',
-  'plusOne'
+  'plusOne',
+  'wu.masonry'
 ])
 
 /**
@@ -39,7 +40,30 @@ angular.module( 'ngBoilerplate.home', [
  * And of course we define a controller for our route.
  */
 .controller( 'HomeCtrl', function HomeController( $scope ) {
-})
 
-;
+  function genBrick() {
+      return {
+          src: '' + ~~(Math.random() * 10000)
+      };
+  }
+
+  $scope.bricks = [
+      genBrick(),
+      genBrick(),
+      genBrick(),
+      genBrick(),
+      genBrick(),
+      genBrick(),
+      genBrick()
+  ];
+
+  $scope.add = function add() {
+      $scope.bricks.push(genBrick());
+  };
+
+  $scope.remove = function remove() {
+      $scope.bricks.splice((Math.random() * $scope.bricks.length),1);
+  };
+
+});
 
