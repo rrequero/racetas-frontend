@@ -19,7 +19,12 @@
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-inverse" role="navigation">
+    <header>
+      <a href="#" >
+        <img src="assets/img/logo.png" alt="racetas logo" class="logo"/>
+      </a>
+    </header>
+    <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -31,7 +36,7 @@
           <a class="navbar-brand" href="#">Brand</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+      
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ui-route="/home" ng-class="{active:$uiRoute}">
@@ -40,14 +45,30 @@
                 Home
               </a>
             </li>
-            <li ui-route="/about" ng-class="{active:$uiRoute}">
-              <a href="#/about">
+            <li ui-route="/receta" ng-class="{active:$uiRoute}">
+              <a href="#/receta">
                 <i class="icon-info-sign"></i>
-                What is it?
+                Receta
               </a>
             </li>            
           </ul>
-        </div><!-- /.navbar-collapse -->
+          <ul class="navbar-form navbar-right"  ng-show="$state.current.name =='home'">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Busqueda por titulo" ng-model="search.title">
+            </div>
+            <div class="form-group">
+              <select
+                  multiple
+                  ng-model="search.ingredients"
+                  ng-options="item.key as item.value for item in ingredients"
+                  chosen
+                  style="width:200px;"
+                  >
+                </select>
+                <input type="checkbox" ng-model="strict">Todos</input>
+            </div>
+          </ul>
+        </div>
       </div>    
     </nav>
     <div class="container" ui-view="main"></div>

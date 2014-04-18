@@ -1,10 +1,40 @@
-.grid-sizer{
-  width: 20%;
+//sobreescribo una propiedad del chosen
+.chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+  height: 25px;
 }
 
-.masonry-brick{
-  width: 200px;
-  border:1px solid red;
-  height:280px;
-  margin-bottom:10px;  
+
+.masonry{
+  margin:0 auto;
+  .grid-sizer{
+    width: 1px;
+  }
+  .recipe{
+    width: 280px;
+    border:4px solid @greenDark;    
+    margin-bottom: 2px;
+    background:@greenLight;
+    .border-radius();
+
+    h4{
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+    }
+    .image{
+      width:270px;
+      height: 200px;
+      display: block;
+      margin: 0 auto;
+      margin-bottom:10px;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  
+
+  }
+
+  
 }

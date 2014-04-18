@@ -1,15 +1,17 @@
-<div class="jumbotron">
-  <h1>Home</h1>
-  <div class="btn-group">
-      <button class="btn btn-primary" ng-click="add()">Add</button>
+<div>
+
+  <!--<div class="btn-group">
+      <button class="btn btn-primary" ng-click="addSimple()">Add simple</button>
+       <button class="btn btn-primary" ng-click="addDouble()">Add double</button>
       <button class="btn btn-danger" ng-click="remove()">Remove</button>
-  </div>
-  <!--<div masonry column-width=".grid-sizer" masonry-options="{ gutter : 10 }"> -->
-  <div masonry column-width="200" masonry-options="{ gutter : 5 }">
+  </div>-->
+   <!--<div masonry column-width=".grid-sizer" masonry-options="{ gutter : 10 }"> -->
+  <div class="masonry" masonry column-width=".grid-sizer" masonry-options="{ gutter : 5, isFitWidth:true }"  item-selector=".recipe">
       <div class="grid-sizer"></div>
-      <div class="masonry-brick" ng-repeat="brick in bricks">
-          <!--<img ng-src="{{ brick.src }}" alt="A masonry brick">-->
-          {{ brick.src }}
+      <div class="recipe" ng-repeat="recipe in recipes | filter:search:filterIngredientsFunction | filter:search.title" masonry-brick>
+          <div class="image"><img ng-src="{{recipe.srcImg}}" alt=""/></div>
+          <raty id="star{{$index}}" score="{{recipe.score}}" number="5" read-only="true"></raty>
+          <h4>{{recipe.title}}</h4>         
       </div>
   </div>
  

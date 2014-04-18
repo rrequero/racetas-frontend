@@ -1,28 +1,12 @@
-/**
- * Each section of the site has its own module. It probably also has
- * submodules, though this boilerplate is too simple to demonstrate it. Within
- * `src/app/home`, however, could exist several additional folders representing
- * additional modules that would then be listed as dependencies of this one.
- * For example, a `note` section could have the submodules `note.create`,
- * `note.delete`, `note.edit`, etc.
- *
- * Regardless, so long as dependencies are managed correctly, the build process
- * will automatically take take of the rest.
- *
- * The dependencies block here is also where component dependencies should be
- * specified, as shown below.
- */
 angular.module( 'racetas.home', [
   'ui.router',
   'plusOne',
-  'wu.masonry'
+  'wu.masonry',
+  'localytics.directives',
+  'raty'
 ])
 
-/**
- * Each section or module of the site can also have its own routes. AngularJS
- * will handle ensuring they are all available at run-time, but splitting it
- * this way makes each module more "self-contained".
- */
+
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'home', {
     url: '/home',
@@ -36,33 +20,112 @@ angular.module( 'racetas.home', [
   });
 })
 
-/**
- * And of course we define a controller for our route.
- */
+
 .controller( 'HomeCtrl', function HomeController( $scope ) {
 
-  function genBrick() {
+  function genRecipe() {
       return {
-          src: '' + ~~(Math.random() * 10000)
+          title:'Receta '+ ~~(Math.random() * 10000),
+          type:"simple",
+          srcImg:'http://lorempixel.com/280/180/food/?' + ~~(Math.random() * 10000),
+          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a placerat neque. Sed dictum, massa ut iaculis placerat, magna est tempus metus, at sagittis nunc nisi vestibulum massa. Nunc tortor.'
       };
   }
 
-  $scope.bricks = [
-      genBrick(),
-      genBrick(),
-      genBrick(),
-      genBrick(),
-      genBrick(),
-      genBrick(),
-      genBrick()
+  $scope.$parent.ingredients = [
+    {
+      key:"agua", value:"Agua"
+    },
+    {
+      key:"maiz", value:"Maiz"
+    },
+    {
+      key:"harina", value:"Harina"
+    },
+    {
+      key:"vino", value:"Vino"
+    },
+    {
+      key:"remolacha", value:"Remolacha"
+    },
+    {
+      key:"azucar", value:"Azucar"
+    }
   ];
 
-  $scope.add = function add() {
-      $scope.bricks.push(genBrick());
+
+  $scope.filterIngredientsFunction = function(actual, expected){
+    var find = expected.length === 0;
+    for(var pos in expected){
+      if(actual.indexOf(expected[pos])==-1 && $scope.strict === true){
+        return false;
+      }else if(actual.indexOf(expected[pos])!=-1 && $scope.strict === false){
+        return true;
+      }
+      else if(actual.indexOf(expected[pos])!=-1){
+        find = true;
+      }
+    }
+    return find;
+  }; 
+
+  $scope.recipes = [
+     {
+          title:'Receta '+ ~~(Math.random() * 10000),
+          ingredients:['azucar','maiz','agua'],
+          srcImg:'http://lorempixel.com/280/180/food/?' + ~~(Math.random() * 10000),
+          score:1,
+          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a placerat neque. Sed dictum, massa ut iaculis placerat, magna est tempus metus, at sagittis nunc nisi vestibulum massa. Nunc tortor.'
+      },
+      {
+          title:'Receta '+ ~~(Math.random() * 10000),
+          ingredients:['vino'],
+          score:2,
+          srcImg:'http://lorempixel.com/280/180/food/?' + ~~(Math.random() * 10000),
+          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a placerat neque. Sed dictum, massa ut iaculis placerat, magna est tempus metus, at sagittis nunc nisi vestibulum massa. Nunc tortor.'
+      },
+      {
+          title:'Receta '+ ~~(Math.random() * 10000),
+          ingredients:['azucar','maiz','harina'],
+          score:3,
+          srcImg:'http://lorempixel.com/280/180/food/?' + ~~(Math.random() * 10000),
+          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a placerat neque. Sed dictum, massa ut iaculis placerat, magna est tempus metus, at sagittis nunc nisi vestibulum massa. Nunc tortor.'
+      },
+      {
+          title:'Receta '+ ~~(Math.random() * 10000),
+          ingredients:['remolacha','maiz','agua'],
+          score:5,
+          srcImg:'http://lorempixel.com/280/180/food/?' + ~~(Math.random() * 10000),
+          description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a placerat neque. Sed dictum, massa ut iaculis placerat, magna est tempus metus, at sagittis nunc nisi vestibulum massa. Nunc tortor.'
+      }
+  ];
+
+
+  $scope.addSimple = function() {
+      var recipe = genRecipe();
+      
+      $scope.recipes.push(recipe);
   };
 
-  $scope.remove = function remove() {
-      $scope.bricks.splice((Math.random() * $scope.bricks.length),1);
+  $scope.addDouble = function() {
+      var recipe = genRecipe();
+      recipe.type="double";
+      recipe.srcImg ='http://lorempixel.com/400/200/food/?' + ~~(Math.random() * 10000),
+      $scope.recipes.push(recipe);
+  };
+
+  /*for(var i= 0;i < 10; i++){
+    if((~~(Math.random() * 10000)) % 2 === 0){
+      $scope.addDouble();
+    }else{
+       $scope.addSimple();
+    }
+  }*/
+
+  
+
+  $scope.remove = function() {
+      $scope.recipes.splice((Math.random() * $scope.recipes.length),1);
   };
 
 });

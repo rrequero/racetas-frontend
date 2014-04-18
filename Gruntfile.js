@@ -99,6 +99,16 @@ module.exports = function ( grunt ) {
      * `build_dir`, and then to copy the assets to `compile_dir`.
      */
     copy: {
+		build_assets:{
+			files: [
+			{
+				src: [ '**' ],
+				dest: '<%= compile_dir %>/assets',
+				cwd: '<%= build_dir %>/assets',
+				expand: true
+			}
+			]
+		},
       build_app_assets: {
         files: [
           { 

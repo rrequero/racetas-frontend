@@ -1,0 +1,11 @@
+{
+  "name": "raty",
+  "_cacheHeaders": {
+    "Content-Length": "160078",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=raty-2.5.2.zip"
+  },
+  "_source": "http://github.com/wbotelhos/raty/archive/2.5.2.zip",
+  "_target": "*",
+  "_originalSource": "http://github.com/wbotelhos/raty/archive/2.5.2.zip"
+}
